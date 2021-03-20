@@ -3,12 +3,8 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
-using System.Drawing.Imaging;
 using System.IO;
 
 namespace ThaiNationalIDCard
@@ -28,14 +24,8 @@ namespace ThaiNationalIDCard
 
         public byte[] PhotoRaw
         {
-            get
-            {
-                return _photo_jpeg;
-            }
-            set
-            {
-                _photo_jpeg = value;
-            }
+            get => _photo_jpeg;
+            set => _photo_jpeg = value;
         }
 
         public System.Drawing.Bitmap PhotoBitmap
@@ -68,93 +58,34 @@ namespace ThaiNationalIDCard
 
         public string Address
         {
-            set
-            {
-                _address = value.Trim();
-            }
-            get
-            {
-                return _address.Replace('#', ' ');
-            }
+            set => _address = value.Trim();
+            get => _address.Replace('#', ' ');
         }
 
-        public string addrHouseNo
-        {
-            get
-            {
-                return _address.Split('#')[0].Trim();
-            }
-        }
+        public string addrHouseNo => _address.Split('#')[0].Trim();
 
+        public string addrVillageNo => _address.Split('#')[1].Trim();
 
-        public string addrVillageNo
-        {
-            get
-            {
-                return _address.Split('#')[1].Trim();
-            }
-        }
+        public string addrLane => _address.Split('#')[2].Trim();
 
+        public string addrRoad => _address.Split('#')[3].Trim();
 
-        public string addrLane
-        {
-            get
-            {
-                return _address.Split('#')[2].Trim();
-            }
-        }
+        public string addrTambol => _address.Split('#')[5].Trim();
 
-        public string addrRoad
-        {
-            get
-            {
-                return _address.Split('#')[3].Trim();
-            }
-        }
+        public string addrAmphur => _address.Split('#')[6].Trim();
 
-        public string addrTambol
-        {
-            get
-            {
-                return _address.Split('#')[5].Trim();
-            }
-        }
-
-        public string addrAmphur
-        {
-            get
-            {
-                return _address.Split('#')[6].Trim();
-            }
-        }
-
-        public string addrProvince
-        {
-            get
-            {
-                return _address.Split('#')[7].Trim();
-            }
-        }
+        public string addrProvince => _address.Split('#')[7].Trim();
 
         public string Issue_Expire
         {
-            set
-            {
-                _issue_expire = value;
-            }
+            set => _issue_expire = value;
         }
 
-        public DateTime Issue
-        {
-            get
-            {
-                return new DateTime(
-                    Convert.ToInt32(_issue_expire.Substring(0, 4)) - 543,
-                    Convert.ToInt32(_issue_expire.Substring(4, 2)),
-                    Convert.ToInt32(_issue_expire.Substring(6, 2))
-                    );
-            }
-        }
+        public DateTime Issue => new DateTime(
+            Convert.ToInt32(_issue_expire.Substring(0, 4)) - 543,
+            Convert.ToInt32(_issue_expire.Substring(4, 2)),
+            Convert.ToInt32(_issue_expire.Substring(6, 2))
+        );
 
         public DateTime Expire
         {
@@ -168,117 +99,51 @@ namespace ThaiNationalIDCard
             }
         }
 
-        public string ExpireString
+        public string ExpireString => Expire.ToString("yyyyMMdd");
+
+        public DateTime? Birthday
         {
             get
             {
-                return Expire.ToString("yyyyMMdd");
+                var yearValue = Convert.ToInt32(_personal.Substring(200, 4));
+                var monthValue = Convert.ToInt32(_personal.Substring(204, 2));
+                var dayValue = Convert.ToInt32(_personal.Substring(206, 2));
+
+                // Update Language version https://stackoverflow.com/a/60378136/1872200
+                return (yearValue, monthValue, dayValue) switch
+                {
+                    (var year, var month, var day) when new[] { year, month, day }.All(v => v > 0)
+                    // Convert BC to AD
+                        => new DateTime(year - 543, month, day),
+                    _ => null
+                };
             }
         }
 
-        public DateTime Birthday 
-        {
-            get
-            {
-                return new DateTime(
-                Convert.ToInt32(_personal.Substring(200, 4)) - 543,
-                Convert.ToInt32(_personal.Substring(204, 2)),
-                Convert.ToInt32(_personal.Substring(206, 2))
-                );
-            }
-        }
-        
-        public string BirthdayYearString
-        {
-            get
-            {
-                return (Convert.ToInt32(_personal.Substring(200, 4)) - 543).ToString();
-            }
-        }
+        public string BirthdayYearString => (Convert.ToInt32(_personal.Substring(200, 4)) - 543).ToString();
 
-        public string Sex
-        {
-            get
-            {
-                return _personal.Substring(208, 1);
-            }
-        }
+        public string Sex => _personal.Substring(208, 1);
 
-        public string Th_Prefix
-        {
-            get
-            {
-                return _th_personal[0].Trim();
-            }
-        }
+        public string Th_Prefix => _th_personal[0].Trim();
 
-        public string Th_Firstname
-        {
-            get
-            {
-                return _th_personal[1].Trim();
-            }
-        }
+        public string Th_Firstname => _th_personal[1].Trim();
 
-        public string Th_Middlename
-        {
-            get
-            {
-                return _th_personal[2].Trim();
-            }
-        }
+        public string Th_Middlename => _th_personal[2].Trim();
 
-        public string Th_Lastname
-        {
-            get
-            {
-                return _th_personal[3].Trim();
-            }
-        }
+        public string Th_Lastname => _th_personal[3].Trim();
 
-        public string En_Prefix
-        {
-            get
-            {
-                return _en_personal[0].Trim();
-            }
-        }
+        public string En_Prefix => _en_personal[0].Trim();
 
-        public string En_Firstname
-        {
-            get
-            {
-                return _en_personal[1].Trim();
-            }
-        }
-        public string En_Middlename
-        {
-            get
-            {
-                return _en_personal[2].Trim();
-            }
-        }
+        public string En_Firstname => _en_personal[1].Trim();
+        public string En_Middlename => _en_personal[2].Trim();
 
-        public string En_Lastname
-        {
-            get
-            {
-                return _en_personal[3].Trim();
-            }
-        }
+        public string En_Lastname => _en_personal[3].Trim();
 
         public string Issuer
         {
-            get
-            {
-                return _issuer;
-            }
-            set
-            {
-                _issuer = value;
-            }
+            get => _issuer;
+            set => _issuer = value;
         }
-
-
     }
 }
+

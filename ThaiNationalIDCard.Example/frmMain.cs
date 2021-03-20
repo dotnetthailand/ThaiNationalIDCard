@@ -54,7 +54,7 @@ namespace ThaiNationalIDCard.Example
                 if (personal != null)
                 {
                     lbl_cid.Text = personal.Citizenid;
-                    lbl_birthday.Text = personal.Birthday.ToString("dd/MM/yyyy");
+                    lbl_birthday.Text = personal.Birthday?.ToString("dd/MM/yyyy");
                     lbl_sex.Text = personal.Sex;
                     lbl_th_prefix.Text = personal.Th_Prefix;
                     lbl_th_firstname.Text = personal.Th_Firstname;
@@ -132,7 +132,7 @@ namespace ThaiNationalIDCard.Example
             }
                 
             lbl_cid.BeginInvoke(new MethodInvoker(delegate { lbl_cid.Text = personal.Citizenid; }));
-            lbl_birthday.BeginInvoke(new MethodInvoker(delegate { lbl_birthday.Text = personal.Birthday.ToString("dd/MM/yyyy"); }));
+            lbl_birthday.BeginInvoke(new MethodInvoker(delegate { lbl_birthday.Text = personal.Birthday?.ToString("dd/MM/yyyy"); }));
             lbl_sex.BeginInvoke(new MethodInvoker(delegate { lbl_sex.Text = personal.Sex; }));
             lbl_th_prefix.BeginInvoke(new MethodInvoker(delegate { lbl_th_prefix.Text = personal.Th_Prefix; }));
             lbl_th_firstname.BeginInvoke(new MethodInvoker(delegate { lbl_th_firstname.Text = personal.Th_Firstname; }));
@@ -154,7 +154,7 @@ namespace ThaiNationalIDCard.Example
             if (personal != null)
             {
                 lbl_cid.Text = personal.Citizenid;
-                lbl_birthday.Text = personal.Birthday.ToString("dd/MM/yyyy");
+                lbl_birthday.Text = personal.Birthday?.ToString("dd/MM/yyyy");
                 lbl_sex.Text = personal.Sex;
                 lbl_th_prefix.Text = personal.Th_Prefix;
                 lbl_th_firstname.Text = personal.Th_Firstname;
