@@ -101,22 +101,18 @@ namespace ThaiNationalIDCard
 
         public string ExpireString => Expire.ToString("yyyyMMdd");
 
+        // Update Language version https://stackoverflow.com/a/60378136/1872200
         public DateTime? Birthday
         {
             get
             {
-                var yearValue = Convert.ToInt32(_personal.Substring(200, 4));
-                var monthValue = Convert.ToInt32(_personal.Substring(204, 2));
-                var dayValue = Convert.ToInt32(_personal.Substring(206, 2));
+                var year = Convert.ToInt32(_personal.Substring(200, 4));
+                var month = Convert.ToInt32(_personal.Substring(204, 2));
+                var day = Convert.ToInt32(_personal.Substring(206, 2));
 
-                // Update Language version https://stackoverflow.com/a/60378136/1872200
-                return (yearValue, monthValue, dayValue) switch
-                {
-                    (var year, var month, var day) when new[] { year, month, day }.All(v => v > 0)
-                    // Convert BC to AD
-                        => new DateTime(year - 543, month, day),
-                    _ => null
-                };
+                return new[] { year, month, day }.All(v => v > 0)
+                    ? new DateTime(year - 543, month, day)
+                    : null;
             }
         }
 
