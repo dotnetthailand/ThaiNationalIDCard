@@ -1,6 +1,18 @@
 # ThaiNationalIDCard
 
-A fork of chakphanu/ThaiNationalIDCard and maintained by .NET Thailand community
+A fork of chakphanu/ThaiNationalIDCard and maintained by .NET Thailand group
+
+## About the project 
+
+จุดกำเนิดของ library ตัวนี้ มาจากตอนที่คุณ Chakphanu Komasathit ยังทำงานที่ ม.ราชภัฏ
+ตอนนั้นต้องการให้น้องๆ programmer สร้าง application เพื่อดึงข้อมูลจากบัตรประจำตัวประชาชน
+แต่ ณ เวลานั้น library ต่างๆ ต้องซื้อและมี license ต่อเครื่อง ไม่ได้มี open source ให้ใช้งานได้ฟรี
+
+จนคุณ Chakphanu Komasathit ได้ไปเจอกับ APDU command Delphi code ของคุณ Manoi ที่ forum hosxp เลยเริ่มนำมาพัฒนาเป็น C# .NET library 
+
+ซึ่งตอนนั้นความรู้ smartcard ของคุณ Chakphanu Komasathit เป็นศูนย์ คือต้องเริ่มนับหนึ่งใหม่
+การพัฒนาจำเป็นต้องใช้  Wireshark เพื่อดูข้อมูลที่แลกเปลี่ยนกันผ่านทาง USB
+จนในที่สุดเมื่อได้ library ที่สามารถใช้งานได้ จึงได้ส่งต่อให้น้องๆ ในที่ทำงานนำไปพัฒนา application ต่อไป
 
 ## Code example
 
