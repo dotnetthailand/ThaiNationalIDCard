@@ -56,9 +56,9 @@ public void readCard()
 ```
 
 ## Credit
-Original repository by Mr. Chakphanu Komasathit https://github.com/chakphanu/ThaiNationalIDCard
-APDU Command from Mr. Manoi http://hosxp.net/index.php?option=com_smf&topic=22496
-3B 78 Type of thai smartcard See on wiki. https://github.com/kolry/ThaiNationalIDCard/wiki/_pages
+- Original repository by Mr. Chakphanu Komasathit https://github.com/chakphanu/ThaiNationalIDCard
+- APDU Command from Mr. Manoi http://hosxp.net/index.php?option=com_smf&topic=22496
+- 3B 78 Type of Thai smartcard. More details https://github.com/kolry/ThaiNationalIDCard/wiki/_pages
 
 ## Todo 
 
