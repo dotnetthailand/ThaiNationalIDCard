@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 
 namespace ThaiNationalIDCard.Example
 {
@@ -142,7 +144,7 @@ namespace ThaiNationalIDCard.Example
             lbl_en_lastname.BeginInvoke(new MethodInvoker(delegate { lbl_en_lastname.Text = personal.En_Lastname; }));
             lbl_issue.BeginInvoke(new MethodInvoker(delegate { lbl_issue.Text = personal.Issue.ToString("dd/MM/yyyy"); }));
             lbl_expire.BeginInvoke(new MethodInvoker(delegate { lbl_expire.Text = personal.Expire.ToString("dd/MM/yyyy"); }));
-            pictureBox1.BeginInvoke(new MethodInvoker(delegate { pictureBox1.Image = personal.PhotoBitmap; }));
+            pictureBox1.BeginInvoke(new MethodInvoker(delegate { pictureBox1.Image = GetPhotoBitmap(personal); }));
         }
 
         private void btnReadWithPhoto_Click_1(object sender, EventArgs e)
@@ -164,11 +166,27 @@ namespace ThaiNationalIDCard.Example
                 lbl_en_lastname.Text = personal.En_Lastname;
                 lbl_issue.Text = personal.Issue.ToString("dd/MM/yyyy");
                 lbl_expire.Text = personal.Expire.ToString("dd/MM/yyyy");
-                pictureBox1.Image = personal.PhotoBitmap;
+                pictureBox1.Image = GetPhotoBitmap(personal);
             }
             else if (idcard.ErrorCode() > 0)
             {
                 MessageBox.Show(idcard.Error());
+            }
+        }
+
+
+        public Bitmap GetPhotoBitmap(Personal personal)
+        {
+            if (personal.PhotoRaw == null)
+                return null;
+            JpegBitmapDecoder decoder = new JpegBitmapDecoder(new MemoryStream(personal.PhotoRaw), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+            BitmapSource bitmapSource = decoder.Frames[0];
+            using (MemoryStream outStream = new System.IO.MemoryStream())
+            {
+                BitmapEncoder enc = new BmpBitmapEncoder();
+                enc.Frames.Add(BitmapFrame.Create(bitmapSource));
+                enc.Save(outStream);
+                return new Bitmap(outStream);
             }
         }
 

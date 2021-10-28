@@ -4,8 +4,6 @@
 
 using System;
 using System.Linq;
-using System.Windows.Media.Imaging;
-using System.IO;
 
 namespace ThaiNationalIDCard
 {
@@ -28,23 +26,6 @@ namespace ThaiNationalIDCard
             set => _photo_jpeg = value;
         }
 
-        public System.Drawing.Bitmap PhotoBitmap
-        {
-            get
-            {
-                if (_photo_jpeg == null)
-                    return null;
-                JpegBitmapDecoder decoder = new JpegBitmapDecoder(new MemoryStream(_photo_jpeg), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
-                BitmapSource bitmapSource = decoder.Frames[0];
-                using (System.IO.MemoryStream outStream = new System.IO.MemoryStream())
-                {
-                    BitmapEncoder enc = new BmpBitmapEncoder();
-                    enc.Frames.Add(BitmapFrame.Create(bitmapSource));
-                    enc.Save(outStream);
-                    return new System.Drawing.Bitmap(outStream);
-                }
-            }
-        }
 
         public string Info
         {
@@ -112,7 +93,7 @@ namespace ThaiNationalIDCard
 
                 return new[] { year, month, day }.All(v => v > 0)
                     ? new DateTime(year - 543, month, day)
-                    : null;
+                    : default(DateTime?);
             }
         }
 
