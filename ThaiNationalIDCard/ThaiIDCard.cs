@@ -188,17 +188,19 @@ namespace ThaiNationalIDCard
 
         private byte[] SendPhotoCommand()
         {
-            var s = new MemoryStream();
-            byte[][] cmds_photo = _apdu.EF_CARD_PHOTO;
-
-            for (int i = 0; i < cmds_photo.Length; i++)
+            using (var s = new MemoryStream())
             {
-                s.Write(SendCommand(cmds_photo[i]), 0, SendCommand(cmds_photo[i]).Length);
-                eventPhotoProgress?.Invoke(i + 1, cmds_photo.Length);
-            }
+                byte[][] cmds_photo = _apdu.EF_CARD_PHOTO;
 
-            s.Seek(0, SeekOrigin.Begin);
-            return s.ToArray();
+                for (int i = 0; i < cmds_photo.Length; i++)
+                {
+                    s.Write(SendCommand(cmds_photo[i]), 0, SendCommand(cmds_photo[i]).Length);
+                    eventPhotoProgress?.Invoke(i + 1, cmds_photo.Length);
+                }
+
+                s.Seek(0, SeekOrigin.Begin);
+                return s.ToArray();
+            }
         }
 
 
@@ -330,8 +332,8 @@ namespace ThaiNationalIDCard
         {
             try
             {
-                _reader.Disconnect(SCardReaderDisposition.Leave);
-                _hContext.Release();
+                _reader?.Disconnect(SCardReaderDisposition.Leave);
+                _hContext?.Release();
                 return true;
             }
             catch (PCSCException ex)
@@ -340,6 +342,13 @@ namespace ThaiNationalIDCard
                 _error_message = "Close Err: " + ex.Message + " (" + ex.SCardError.ToString() + ")";
                 Debug.Print(_error_message);
                 return false;
+            }
+            finally
+            {
+                _hContext?.Dispose();
+                _reader?.Dispose();
+                _reader = null;
+                _hContext = null;
             }
         }
 
