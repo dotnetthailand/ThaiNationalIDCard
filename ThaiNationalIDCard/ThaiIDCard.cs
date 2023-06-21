@@ -357,12 +357,30 @@ namespace ThaiNationalIDCard
 
             return null;
         }
-
+        private byte[] toBytes(string input)
+        {
+            int lengthArray = input.Length / 2;
+            int startIndex = 0;
+            byte[] bytes = new byte[lengthArray];
+            for (int i = 0; i < lengthArray; i++)
+            {
+                string result = input.Substring(startIndex, 2);
+                bytes[i] = (byte)int.Parse(result, System.Globalization.NumberStyles.HexNumber);
+                startIndex += 2;
+            }
+            return bytes;
+        }
         public Personal readAll(bool with_photo = false, string readerName = null)
         {
             Personal personal = new Personal();
             if (Open(readerName))
             {
+                //80b00000020004 card_version 0003
+                var card_version = GetUTF8FromAsciiBytes(SendCommand(new byte[] { 0x80, 0xb0, 0x00, 0x00, 0x02, 0x00, 0x04 }));
+
+                //80b000e2020085 RequestNumber, Issued by,Issued Code
+                var test1 = GetUTF8FromAsciiBytes(SendCommand(new byte[] { 0x80, 0xb0, 0x00, 0xe2, 0x02, 0x00, 0x85 }));
+
                 //NumberUnderImg
                 personal.NumberUnderImg = GetUTF8FromAsciiBytes(SendCommand(_apdu.EF_NUMBER_UNDER_IMG));
 
