@@ -21,6 +21,7 @@ namespace ThaiNationalIDCard
         private byte[] _photo_jpeg;
 
         public string Citizenid { get; set; }
+        public string NumberUnderImg { get; set; }
 
         public byte[] PhotoRaw
         {

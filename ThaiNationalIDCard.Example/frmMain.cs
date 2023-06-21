@@ -54,6 +54,7 @@ namespace ThaiNationalIDCard.Example
                 if (personal != null)
                 {
                     lbl_cid.Text = personal.Citizenid;
+                    lbl_number_under_img.Text = personal.NumberUnderImg;
                     lbl_birthday.Text = personal.Birthday?.ToString("dd/MM/yyyy");
                     lbl_sex.Text = personal.Sex;
                     lbl_th_prefix.Text = personal.Th_Prefix;
@@ -84,7 +85,7 @@ namespace ThaiNationalIDCard.Example
                     MessageBox.Show("Catch all");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -122,16 +123,17 @@ namespace ThaiNationalIDCard.Example
 
         public void CardInserted(Personal personal)
         {
-            if (personal == null )
+            if (personal == null)
             {
-                if(idcard.ErrorCode() > 0)
+                if (idcard.ErrorCode() > 0)
                 {
                     MessageBox.Show(idcard.Error());
                 }
                 return;
             }
-                
+
             lbl_cid.BeginInvoke(new MethodInvoker(delegate { lbl_cid.Text = personal.Citizenid; }));
+            lbl_number_under_img.BeginInvoke(new MethodInvoker(delegate { lbl_number_under_img.Text = personal.NumberUnderImg; }));
             lbl_birthday.BeginInvoke(new MethodInvoker(delegate { lbl_birthday.Text = personal.Birthday?.ToString("dd/MM/yyyy"); }));
             lbl_sex.BeginInvoke(new MethodInvoker(delegate { lbl_sex.Text = personal.Sex; }));
             lbl_th_prefix.BeginInvoke(new MethodInvoker(delegate { lbl_th_prefix.Text = personal.Th_Prefix; }));
@@ -154,6 +156,7 @@ namespace ThaiNationalIDCard.Example
             if (personal != null)
             {
                 lbl_cid.Text = personal.Citizenid;
+                lbl_number_under_img.Text = personal.NumberUnderImg;
                 lbl_birthday.Text = personal.Birthday?.ToString("dd/MM/yyyy");
                 lbl_sex.Text = personal.Sex;
                 lbl_th_prefix.Text = personal.Th_Prefix;
@@ -194,11 +197,11 @@ namespace ThaiNationalIDCard.Example
                 }
                 cbxReaderList.DroppedDown = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-           
+
         }
 
         private void chkBoxMonitor_CheckedChanged_1(object sender, EventArgs e)

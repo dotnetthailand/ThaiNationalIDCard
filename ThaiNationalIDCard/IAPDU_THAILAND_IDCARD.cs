@@ -14,6 +14,9 @@ namespace ThaiNationalIDCard
         // Citizen ID
         byte[] EF_CID { get; set; }
 
+        // Number Under Images
+        byte[] EF_NUMBER_UNDER_IMG { get; set; }
+
         // Fullname Thai + Eng + BirthDate + Sex
         byte[] EF_PERSON_INFO { get; set; }
 
