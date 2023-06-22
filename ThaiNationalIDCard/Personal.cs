@@ -12,6 +12,10 @@ namespace ThaiNationalIDCard
     public class Personal
     {
         private string _personal;
+        private string _cardinfo;
+        private string _requestcardnumber;
+        private string _issuedby;
+        private string _issuedcode;
         private string _address;
         private string _issue_expire;
         private string _issuer;
@@ -22,7 +26,21 @@ namespace ThaiNationalIDCard
 
         public string Citizenid { get; set; }
         public string NumberUnderImg { get; set; }
-
+        public string CardVersion { get; set; }
+        public string CardInfo
+        {
+            set
+            {
+                _cardinfo = value.Replace(" ", "");
+                _requestcardnumber = _cardinfo.Substring(0, 20);
+                _issuedcode = _cardinfo.Remove(0, _cardinfo.Length - 13);
+                string temp = _cardinfo.Remove(0, 20);
+                _issuedby = temp.Remove(temp.Length - 13);
+            }
+        }
+        public string RequestCardNumber => _requestcardnumber;
+        public string IssuedBy => _issuedby;
+        public string IssuedCode => _issuedcode;
         public byte[] PhotoRaw
         {
             get => _photo_jpeg;

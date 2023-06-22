@@ -376,10 +376,10 @@ namespace ThaiNationalIDCard
             if (Open(readerName))
             {
                 //80b00000020004 card_version 0003
-                var card_version = GetUTF8FromAsciiBytes(SendCommand(new byte[] { 0x80, 0xb0, 0x00, 0x00, 0x02, 0x00, 0x04 }));
+                personal.CardVersion = GetUTF8FromAsciiBytes(SendCommand(_apdu.EF_CARD_VERSION));
 
                 //80b000e2020085 RequestNumber, Issued by,Issued Code
-                var test1 = GetUTF8FromAsciiBytes(SendCommand(new byte[] { 0x80, 0xb0, 0x00, 0xe2, 0x02, 0x00, 0x85 }));
+                personal.CardInfo = GetUTF8FromAsciiBytes(SendCommand(_apdu.EF_CARD_INFO));
 
                 //NumberUnderImg
                 personal.NumberUnderImg = GetUTF8FromAsciiBytes(SendCommand(_apdu.EF_NUMBER_UNDER_IMG));

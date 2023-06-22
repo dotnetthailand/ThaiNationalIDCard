@@ -17,6 +17,12 @@ namespace ThaiNationalIDCard
         // Number Under Images
         byte[] EF_NUMBER_UNDER_IMG { get; set; }
 
+        // Number Under Images
+        byte[] EF_CARD_VERSION { get; set; }
+
+        // RequestNumber + IssuedBy + IssuedCode
+        byte[] EF_CARD_INFO { get; set; }
+
         // Fullname Thai + Eng + BirthDate + Sex
         byte[] EF_PERSON_INFO { get; set; }
 

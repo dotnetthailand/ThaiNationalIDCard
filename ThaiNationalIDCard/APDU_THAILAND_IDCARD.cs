@@ -45,6 +45,26 @@ namespace ThaiNationalIDCard
             set { }
         }
 
+        // card version
+        public byte[] EF_CARD_VERSION
+        {
+            get
+            {
+                return new byte[] { 0x80, 0xb0, 0x00, 0x00, 0x02, 0x00, 0x04 };
+            }
+            set { }
+        }
+
+        // requestnumber + issued by + issued code
+        public byte[] EF_CARD_INFO
+        {
+            get
+            {
+                return new byte[] { 0x80, 0xb0, 0x00, 0xe2, 0x02, 0x00, 0x85 };
+            }
+            set { }
+        }
+
         // Fullname Thai + Eng + BirthDate + Sex
         public byte[] EF_PERSON_INFO
         {
