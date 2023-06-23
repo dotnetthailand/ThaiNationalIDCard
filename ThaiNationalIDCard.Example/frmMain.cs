@@ -65,6 +65,10 @@ namespace ThaiNationalIDCard.Example
                     lbl_en_lastname.Text = personal.En_Lastname;
                     lbl_issue.Text = personal.Issue.ToString("dd/MM/yyyy");
                     lbl_expire.Text = personal.Expire.ToString("dd/MM/yyyy");
+                    lbl_card_version.Text = personal.CardVersion;
+                    lbl_request_num.Text = personal.RequestCardNumber;
+                    lbl_issuedby.Text = personal.IssuedBy;
+                    lbl_isuued_code.Text = personal.IssuedCode;
 
                     LogLine(personal.Address);
                     LogLine(personal.addrHouseNo); // บ้านเลขที่ 
@@ -168,6 +172,10 @@ namespace ThaiNationalIDCard.Example
                 lbl_issue.Text = personal.Issue.ToString("dd/MM/yyyy");
                 lbl_expire.Text = personal.Expire.ToString("dd/MM/yyyy");
                 pictureBox1.Image = personal.PhotoBitmap;
+                lbl_card_version.Text = personal.CardVersion;
+                lbl_request_num.Text = personal.RequestCardNumber;
+                lbl_issuedby.Text = personal.IssuedBy;
+                lbl_isuued_code.Text = personal.IssuedCode;
             }
             else if (idcard.ErrorCode() > 0)
             {

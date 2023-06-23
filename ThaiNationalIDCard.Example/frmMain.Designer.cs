@@ -63,6 +63,14 @@
             this.lbLibVersion = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lbl_number_under_img = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lbl_card_version = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lbl_request_num = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lbl_issuedby = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lbl_isuued_code = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,7 +107,7 @@
             // btnRefreshReaderList
             // 
             this.btnRefreshReaderList.Location = new System.Drawing.Point(933, 11);
-            this.btnRefreshReaderList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRefreshReaderList.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefreshReaderList.Name = "btnRefreshReaderList";
             this.btnRefreshReaderList.Size = new System.Drawing.Size(165, 28);
             this.btnRefreshReaderList.TabIndex = 56;
@@ -111,7 +119,7 @@
             // 
             this.chkBoxMonitor.AutoSize = true;
             this.chkBoxMonitor.Location = new System.Drawing.Point(752, 16);
-            this.chkBoxMonitor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkBoxMonitor.Margin = new System.Windows.Forms.Padding(4);
             this.chkBoxMonitor.Name = "chkBoxMonitor";
             this.chkBoxMonitor.Size = new System.Drawing.Size(104, 20);
             this.chkBoxMonitor.TabIndex = 55;
@@ -123,7 +131,7 @@
             // 
             this.cbxReaderList.FormattingEnabled = true;
             this.cbxReaderList.Location = new System.Drawing.Point(752, 50);
-            this.cbxReaderList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxReaderList.Margin = new System.Windows.Forms.Padding(4);
             this.cbxReaderList.Name = "cbxReaderList";
             this.cbxReaderList.Size = new System.Drawing.Size(395, 24);
             this.cbxReaderList.TabIndex = 54;
@@ -131,7 +139,7 @@
             // btnReadWithPhoto
             // 
             this.btnReadWithPhoto.Location = new System.Drawing.Point(439, 15);
-            this.btnReadWithPhoto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReadWithPhoto.Margin = new System.Windows.Forms.Padding(4);
             this.btnReadWithPhoto.Name = "btnReadWithPhoto";
             this.btnReadWithPhoto.Size = new System.Drawing.Size(127, 49);
             this.btnReadWithPhoto.TabIndex = 53;
@@ -142,7 +150,7 @@
             // PhotoProgressBar1
             // 
             this.PhotoProgressBar1.Location = new System.Drawing.Point(284, 274);
-            this.PhotoProgressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PhotoProgressBar1.Margin = new System.Windows.Forms.Padding(4);
             this.PhotoProgressBar1.MarqueeAnimationSpeed = 0;
             this.PhotoProgressBar1.Name = "PhotoProgressBar1";
             this.PhotoProgressBar1.Size = new System.Drawing.Size(281, 28);
@@ -151,7 +159,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(752, 160);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(396, 437);
             this.pictureBox1.TabIndex = 51;
@@ -356,7 +364,7 @@
             // txtBoxLog
             // 
             this.txtBoxLog.Location = new System.Drawing.Point(40, 310);
-            this.txtBoxLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxLog.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxLog.Multiline = true;
             this.txtBoxLog.Name = "txtBoxLog";
             this.txtBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -366,7 +374,7 @@
             // btnRead
             // 
             this.btnRead.Location = new System.Drawing.Point(300, 15);
-            this.btnRead.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRead.Margin = new System.Windows.Forms.Padding(4);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(131, 49);
             this.btnRead.TabIndex = 31;
@@ -387,7 +395,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(471, 84);
+            this.label10.Location = new System.Drawing.Point(441, 84);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(55, 16);
@@ -397,18 +405,106 @@
             // lbl_number_under_img
             // 
             this.lbl_number_under_img.AutoSize = true;
-            this.lbl_number_under_img.Location = new System.Drawing.Point(549, 84);
+            this.lbl_number_under_img.Location = new System.Drawing.Point(547, 84);
             this.lbl_number_under_img.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_number_under_img.Name = "lbl_number_under_img";
             this.lbl_number_under_img.Size = new System.Drawing.Size(143, 16);
             this.lbl_number_under_img.TabIndex = 63;
             this.lbl_number_under_img.Text = "lbl_number_under_img";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(441, 100);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(81, 16);
+            this.label12.TabIndex = 64;
+            this.label12.Text = "card version";
+            // 
+            // lbl_card_version
+            // 
+            this.lbl_card_version.AutoSize = true;
+            this.lbl_card_version.Location = new System.Drawing.Point(547, 100);
+            this.lbl_card_version.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_card_version.Name = "lbl_card_version";
+            this.lbl_card_version.Size = new System.Drawing.Size(106, 16);
+            this.lbl_card_version.TabIndex = 65;
+            this.lbl_card_version.Text = "lbl_card_version";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(441, 116);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(100, 16);
+            this.label14.TabIndex = 66;
+            this.label14.Text = "request number";
+            // 
+            // lbl_request_num
+            // 
+            this.lbl_request_num.AutoSize = true;
+            this.lbl_request_num.Location = new System.Drawing.Point(547, 116);
+            this.lbl_request_num.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_request_num.Name = "lbl_request_num";
+            this.lbl_request_num.Size = new System.Drawing.Size(105, 16);
+            this.lbl_request_num.TabIndex = 67;
+            this.lbl_request_num.Text = "lbl_request_num";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(441, 132);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(65, 16);
+            this.label15.TabIndex = 68;
+            this.label15.Text = "issued by";
+            // 
+            // lbl_issuedby
+            // 
+            this.lbl_issuedby.AutoSize = true;
+            this.lbl_issuedby.Location = new System.Drawing.Point(547, 132);
+            this.lbl_issuedby.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_issuedby.Name = "lbl_issuedby";
+            this.lbl_issuedby.Size = new System.Drawing.Size(83, 16);
+            this.lbl_issuedby.TabIndex = 69;
+            this.lbl_issuedby.Text = "lbl_issuedby";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(441, 148);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(81, 16);
+            this.label16.TabIndex = 70;
+            this.label16.Text = "issued code";
+            // 
+            // lbl_isuued_code
+            // 
+            this.lbl_isuued_code.AutoSize = true;
+            this.lbl_isuued_code.Location = new System.Drawing.Point(547, 148);
+            this.lbl_isuued_code.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_isuued_code.Name = "lbl_isuued_code";
+            this.lbl_isuued_code.Size = new System.Drawing.Size(106, 16);
+            this.lbl_isuued_code.TabIndex = 71;
+            this.lbl_isuued_code.Text = "lbl_isuued_code";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 609);
+            this.Controls.Add(this.lbl_isuued_code);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.lbl_issuedby);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.lbl_request_num);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.lbl_card_version);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.lbl_number_under_img);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.lbLibVersion);
@@ -442,7 +538,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBoxLog);
             this.Controls.Add(this.btnRead);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.Text = "frmMain";
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -488,5 +584,13 @@
         private System.Windows.Forms.Label lbLibVersion;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lbl_number_under_img;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lbl_card_version;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lbl_request_num;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lbl_issuedby;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lbl_isuued_code;
     }
 }
