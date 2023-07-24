@@ -32,7 +32,7 @@ namespace ThaiNationalIDCard
         private SCardReader _reader;
         private SCardError _err;
         private IntPtr _pioSendPci;
-        
+
         private IAPDU_THAILAND_IDCARD _apdu;
         private SCardMonitor _monitor;
 
@@ -81,7 +81,7 @@ namespace ThaiNationalIDCard
                 _error_message = "_Inserted Err: " + ex.Message + " (" + ex.SCardError.ToString() + ")";
                 Debug.Print(_error_message);
             }
-           
+
         }
 
         private void _Removed(string eventName, CardStatusEventArgs unknown)
@@ -164,7 +164,7 @@ namespace ThaiNationalIDCard
             return false;
         }
 
-        private byte[] SendCommand(byte [] command)
+        private byte[] SendCommand(byte[] command)
         {
             byte[] pbRecvBuffer;
             pbRecvBuffer = new byte[256];
@@ -172,18 +172,18 @@ namespace ThaiNationalIDCard
             CheckErr(_err);
             var responseApdu = new ResponseApdu(pbRecvBuffer, IsoCase.Case2Short, _reader.ActiveProtocol);
 
-            if(responseApdu.SW1.Equals((byte)SW1Code.NormalDataResponse))
+            if (responseApdu.SW1.Equals((byte)SW1Code.NormalDataResponse))
             {
                 command = _apdu.APDU_GET_RESPONSE().Concat(new byte[] { responseApdu.SW2 }).ToArray();
                 pbRecvBuffer = new byte[258];
                 _err = _reader.Transmit(_pioSendPci, command, ref pbRecvBuffer);
-                if(pbRecvBuffer.Length - responseApdu.SW2  == 2)
+                if (pbRecvBuffer.Length - responseApdu.SW2 == 2)
                 {
                     return pbRecvBuffer.Take(pbRecvBuffer.Length - 2).ToArray();
                 }
             }
 
-            return pbRecvBuffer;        
+            return pbRecvBuffer;
         }
 
         private byte[] SendPhotoCommand()
@@ -292,7 +292,7 @@ namespace ThaiNationalIDCard
                 {
                     return false;
                 }
-                
+
                 if (atr[0] == 0x3B && atr[1] == 0x67)
                 {
                     /* corruption card */
@@ -315,7 +315,7 @@ namespace ThaiNationalIDCard
                     return false;
                 }
 
-                
+
             }
             catch (PCSCException ex)
             {
@@ -357,12 +357,32 @@ namespace ThaiNationalIDCard
 
             return null;
         }
-
+        private byte[] toBytes(string input)
+        {
+            int lengthArray = input.Length / 2;
+            int startIndex = 0;
+            byte[] bytes = new byte[lengthArray];
+            for (int i = 0; i < lengthArray; i++)
+            {
+                string result = input.Substring(startIndex, 2);
+                bytes[i] = (byte)int.Parse(result, System.Globalization.NumberStyles.HexNumber);
+                startIndex += 2;
+            }
+            return bytes;
+        }
         public Personal readAll(bool with_photo = false, string readerName = null)
         {
             Personal personal = new Personal();
             if (Open(readerName))
             {
+                //80b00000020004 card_version 0003
+                personal.CardVersion = GetUTF8FromAsciiBytes(SendCommand(_apdu.EF_CARD_VERSION));
+
+                //80b000e2020085 RequestNumber, Issued by,Issued Code
+                personal.CardInfo = GetUTF8FromAsciiBytes(SendCommand(_apdu.EF_CARD_INFO));
+
+                //NumberUnderImg
+                personal.NumberUnderImg = GetUTF8FromAsciiBytes(SendCommand(_apdu.EF_NUMBER_UNDER_IMG));
 
                 // CID
                 personal.Citizenid = GetUTF8FromAsciiBytes(SendCommand(_apdu.EF_CID));
